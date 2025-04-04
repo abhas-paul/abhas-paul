@@ -5,13 +5,13 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=abhas-paul" alt="abhas-paul" /></a> </p>
 
-- 🔭 I’m currently working on [Universall IU, an AI-powered chatbot designed to provide accurate knowledge to students, assist developers with problem-solving, and offer additional features like image generation and PDF creation and much more.](#)
+- 🔭 I’m currently working on **Universall IU, an AI-powered chatbot designed to provide accurate knowledge to students, assist developers with problem-solving, and offer additional features like image generation and PDF creation and much more.**
 
 - 🌱 I’m currently learning **about machine learning and server handling to enhance my skills in building smarter, more efficient web applications.**
 
-- 👯 I’m looking to collaborate on [Universall IU, an AI-powered chatbot designed to provide accurate knowledge to students, assist developers with problem-solving, and offer additional features like image generation and PDF creation. I’m seeking passionate developers, AI enthusiasts, and creative minds to help enhance its capabilities, improve user experience, and expand its features.](#)
+- 👯 I’m looking to collaborate on **Universall IU, an AI-powered chatbot designed to provide accurate knowledge to students, assist developers with problem-solving, and offer additional features like image generation and PDF creation. I’m seeking passionate developers, AI enthusiasts, and creative minds to help enhance its capabilities, improve user experience, and expand its features.**
 
-- 🤝 I’m looking for help with [building a dedicated development team to collaborate and execute plans effectively. If you’re passionate about AI, web development, and creating impactful solutions, feel free to reach out and join us on this exciting journey!](#)
+- 🤝 I’m looking for help with **building a dedicated development team to collaborate and execute plans effectively. If you’re passionate about AI, web development, and creating impactful solutions, feel free to reach out and join us on this exciting journey!**
 
 - 👨‍💻 All of my projects are available at [#](#)
 
