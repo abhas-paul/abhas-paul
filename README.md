@@ -12,7 +12,8 @@
 [![](https://visitcount.itsvg.in/api?id=abhas-paul&icon=3&color=8)](https://visitcount.itsvg.in)
 
 ### ✍️ Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=vetical&theme=dark)
+**"Programs must be written for people to read, and only incidentally for machines to execute."**
+                                                                                    — Harold Abelson
 
 ---
 [![](https://visitcount.itsvg.in/api?id=abhas-paul&icon=3&color=8)](https://visitcount.itsvg.in)
