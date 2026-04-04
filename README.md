@@ -1,9 +1,30 @@
-# Hey there <a href="https://emoji.gg/emoji/979957-duckhey"><img src="https://cdn3.emoji.gg/emojis/979957-duckhey.gif" width="64px" height="64px" alt="duckHey"></a>
-💻 Full-Stack Web Developer.<br>🚀 Building projects & learning every day.<br>⚡ Interested in startups, hacking & problem solving.<br>🎯 Fun fact: The best feeling is when a bug disappears after hours of debugging.
+## Hey there! <a href="https://emoji.gg/emoji/979957-duckhey"><img src="https://cdn3.emoji.gg/emojis/979957-duckhey.gif" width="25px" height="64px" alt="duckHey"></a>
 
+I'm Abhas, a junior software engineer based in India.
 
-## 🌐 Socials:
-[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/abhas87_48823) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/abhas_93) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:abhaspaul86@gmail.com) 
+I work across both frontend and backend, focused on building scalable, impactful web applications.
 
-# 💻 Tech Stack:
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![EJS](https://img.shields.io/badge/ejs-%23B4CA65.svg?style=for-the-badge&logo=ejs&logoColor=black) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Three js](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white) ![Vue.js](https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+I use Figma for UI design and Framer for sketching ideas. However, I perform best when working with provided designs.
+
+I leverage AI tools within my workflow to enhance productivity and efficiency, with a strong focus on delivering high-quality end results.
+
+This is where I share my work, all built from scratch, including experiments and ongoing projects, without relying on templates or copy-paste solutions.
+
+***
+### Tools & Tech Stack
+
+- **Frontend:** HTML, CSS, JavaScript, TypeScript, React, Next.js, Vue.js  
+- **Styling:** Tailwind CSS, Basic CSS
+- **Backend:** Node.js, Express, etc
+- **3D & Interactive:** Three.js  
+- **Database:** Supabase / PostgreSQL, MongoDB, MySQL
+- **Design:** Figma, Framer
+- **Tools & Workflow:** Git, GitHub, PNPM, NPM, Yarn, Vite  
+- **Other:** Fast APIs, Authentication, Responsive Design  
+- **AI Workflow:** Leveraging AI tools to boost productivity and optimizing development speed
+***
+### A Little About Me
+
+- <a href="https://emoji.gg/emoji/118199-repair"><img src="https://cdn3.emoji.gg/emojis/118199-repair.png" width="15px" alt="Repair"></a> I enjoy working independently, valuing creative freedom and focus.
+- <a href="https://emoji.gg/emoji/828690-seekers"><img src="https://cdn3.emoji.gg/emojis/828690-seekers.png" width="15px" alt="Seekers"></a> I collaborate when there’s strong alignment in vision and workflow.  
+- <a href="https://emoji.gg/emoji/480166-coffee"><img src="https://cdn3.emoji.gg/emojis/480166-coffee.png" width="15px" alt="Coffee"></a> Work best in focused sessions with music and coffee.  
