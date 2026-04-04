@@ -1,4 +1,4 @@
-# 💫 About Me:
+# Hey there <a href="https://emoji.gg/emoji/979957-duckhey"><img src="https://cdn3.emoji.gg/emojis/979957-duckhey.gif" width="64px" height="64px" alt="duckHey"></a>
 💻 Full-Stack Web Developer.<br>🚀 Building projects & learning every day.<br>⚡ Interested in startups, hacking & problem solving.<br>🎯 Fun fact: The best feeling is when a bug disappears after hours of debugging.
 
 
