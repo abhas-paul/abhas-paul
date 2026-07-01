@@ -27,4 +27,4 @@ This is where I share my work, all built from scratch, including experiments and
 
 - <a href="https://emoji.gg/emoji/118199-repair"><img src="https://cdn3.emoji.gg/emojis/118199-repair.png" width="15px" alt="Repair"></a> I enjoy working independently, valuing creative freedom and focus.
 - <a href="https://emoji.gg/emoji/828690-seekers"><img src="https://cdn3.emoji.gg/emojis/828690-seekers.png" width="15px" alt="Seekers"></a> I collaborate when there’s strong alignment in vision and workflow.  
-- <a href="https://emoji.gg/emoji/480166-coffee"><img src="https://cdn3.emoji.gg/emojis/480166-coffee.png" width="15px" alt="Coffee"></a> Work best in focused sessions with music and coffee.  
+- <a href="https://emoji.gg/emoji/480166-coffee"><img src="https://cdn3.emoji.gg/emojis/480166-coffee.png" width="15px" alt="Coffee"></a> Work best in focused sessions with music and coffee.
