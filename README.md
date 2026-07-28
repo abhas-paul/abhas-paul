@@ -6,7 +6,7 @@
 </h2>
 
 <p>
-  I’m <strong>Abhas Paul</strong> — a full-stack developer from India 🇮🇳, passionate about building modern, scalable, and user-centric web applications.
+  I’m <strong>Abhas Paul</strong> - a full-stack developer from India 🇮🇳, passionate about building modern, scalable, and user-centric web applications.
 </p>
 
 <p>
