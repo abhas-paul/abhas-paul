@@ -54,6 +54,15 @@
       --card: #19141d;
     }
 
+    [data-theme="solarized-light"] {
+      --bg: #fdf6e3;
+      --fg: #073642;
+      --muted: #657b83;
+      --border: #d8d0ba;
+      --accent: #268bd2;
+      --card: #eee8d5;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -109,7 +118,11 @@
       background-color: #2da44e;
     }
 
-    .theme-picker { display: flex; gap: 5px; }
+    .theme-picker { 
+      display: flex; 
+      gap: 5px; 
+      flex-wrap: wrap;
+    }
 
     .theme-picker button {
       background: var(--card);
@@ -137,6 +150,7 @@
     .swatch.forest { background: #4c765b; }
     .swatch.night { background: #365d86; }
     .swatch.plum { background: #68466f; }
+    .swatch.solarized-light { background: #268bd2; }
 
     /* Header Profile Layout */
     header {
@@ -197,7 +211,7 @@
       color: var(--fg);
     }
 
-    /* Tech Stack Grid - SVG Icons */
+    /* Tech Stack Grid */
     .stack {
       display: grid;
       gap: 1rem;
@@ -244,36 +258,107 @@
       filter: hue-rotate(180deg) brightness(0.8) contrast(1.2);
     }
 
-    /* GitHub Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
+    [data-theme="solarized-light"] .github-graph img {
+      filter: none; /* Disables dark mode inversion for light theme */
     }
 
-    .project-card {
+    /* Minimalist Repo Cards Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .repo-card {
       background-color: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
-      transition: border-color 0.15s ease, transform 0.15s ease;
-      overflow: hidden;
-      display: block;
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
       text-decoration: none;
-      min-height: 120px;
+      transition: border-color 0.15s ease, transform 0.15s ease;
     }
 
-    .project-card:hover {
+    .repo-card:hover {
       border-color: var(--accent);
       transform: translateY(-2px);
+      text-decoration: none;
     }
 
-    .project-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .repo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    
+
+    .repo-title {
+      font-family: var(--font-mono);
+      font-size: 0.925rem;
+      font-weight: 600;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .repo-title svg {
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .repo-arrow {
+      color: var(--muted);
+      font-size: 0.85rem;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+
+    .repo-card:hover .repo-arrow {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    .repo-desc {
+      font-size: 0.825rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .repo-footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    .repo-lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .repo-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
     .loading-text {
       color: var(--muted);
       font-family: var(--font-mono);
@@ -342,11 +427,11 @@
       <button type="button" data-theme-choice="forest"><span class="swatch forest"></span>Forest</button>
       <button type="button" data-theme-choice="night"><span class="swatch night"></span>Night</button>
       <button type="button" data-theme-choice="plum"><span class="swatch plum"></span>Plum</button>
+      <button type="button" data-theme-choice="solarized-light"><span class="swatch solarized-light"></span>Solarized</button>
     </div>
   </div>
 
   <header>
-    <!-- Update pfp.jpg link if necessary -->
     <img class="dp" src="pfp.jpg" alt="Abhas Paul">
     <div class="header-info">
       <h1>Abhas Paul</h1>
@@ -402,7 +487,6 @@
     <section id="projects">
       <h2>Featured Work</h2>
       <div class="projects-grid" id="repo-container">
-        <!-- Repositories will be injected here by JavaScript -->
         <div class="loading-text">Fetching latest projects from GitHub...</div>
       </div>
     </section>
@@ -423,7 +507,7 @@
   </footer>
 
   <script>
-    // Theme Switcher Logic
+    // Theme Switcher
     const buttons = document.querySelectorAll("[data-theme-choice]");
     
     function setTheme(name) {
@@ -441,58 +525,94 @@
     const savedTheme = localStorage.getItem("portfolio-theme") || "obsidian";
     setTheme(savedTheme);
 
-    // GitHub Projects Fetcher Logic
+    // Common Language Colors
+    const langColors = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#3178c6',
+      Python: '#3572A5',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      C: '#555555',
+      'C++': '#f34b7d',
+      'C#': '#178600',
+      Go: '#00ADD8',
+      Rust: '#dea584',
+      Java: '#b07219',
+      Lua: '#000080',
+      Shell: '#89e051',
+      Elixir: '#6e4a7e',
+      Julia: '#a270ba'
+    };
+
+    // Minimalist GitHub Repo Fetcher
     async function fetchGitHubProjects() {
       const username = 'abhas-paul';
       const container = document.getElementById('repo-container');
       
       try {
-        // Fetch up to 10 recently updated public repos
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=12`);
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch repositories');
-        }
+        if (!response.ok) throw new Error('Failed to fetch repositories');
         
         const repos = await response.json();
         
-        // Filter out forks and the profile README repo, then grab the top 4
+        // Filter out forks and profile README repo, take top 4
         const featuredRepos = repos
           .filter(repo => !repo.fork && repo.name.toLowerCase() !== username.toLowerCase())
           .slice(0, 4);
 
-        container.innerHTML = ''; // Clear loading text
+        container.innerHTML = '';
 
         if (featuredRepos.length === 0) {
           container.innerHTML = '<div class="loading-text">No public repositories found.</div>';
           return;
         }
 
-        // Generate HTML for each repo card
         featuredRepos.forEach(repo => {
-          const a = document.createElement('a');
-          a.href = repo.html_url;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.className = 'project-card';
-          
-          const img = document.createElement('img');
-          // Dynamically build the vercel app URL for the pinned stat cards
-          img.src = `https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo.name}&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97`;
-          img.alt = repo.name;
-          img.loading = "lazy";
-          
-          a.appendChild(img);
-          container.appendChild(a);
+          const card = document.createElement('a');
+          card.href = repo.html_url;
+          card.target = '_blank';
+          card.rel = 'noopener';
+          card.className = 'repo-card';
+
+          const langColor = langColors[repo.language] || '#848d97';
+          const langHtml = repo.language 
+            ? `<span class="repo-lang"><span class="lang-dot" style="background-color: ${langColor};"></span>${repo.language}</span>` 
+            : '';
+
+          const starsHtml = repo.stargazers_count > 0 
+            ? `<span class="repo-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> ${repo.stargazers_count}</span>` 
+            : '';
+
+          const forksHtml = repo.forks_count > 0 
+            ? `<span class="repo-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.25a1.75 1.75 0 111.1 1.642v2.858a2.25 2.25 0 002.25 2.25h1.5A2.25 2.25 0 0012 7.75V4.892a1.75 1.75 0 111.5 0v2.858a3.75 3.75 0 01-3.75 3.75h-1.5A3.75 3.75 0 014.5 7.75V4.892A1.75 1.75 0 015 3.25zm1 0a.25.25 0 10-.5 0 .25.25 0 00.5 0zm6.5 0a.25.25 0 10-.5 0 .25.25 0 00.5 0zM5 12.75a1.75 1.75 0 113.5 0 1.75 1.75 0 01-3.5 0zm1.75-.25a.25.25 0 100 .5.25.25 0 000-.5z"/></svg> ${repo.forks_count}</span>` 
+            : '';
+
+          card.innerHTML = `
+            <div class="repo-header">
+              <span class="repo-title">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75V1.5H4.5a1 1 0 00-1 1v12a1 1 0 001 1h5.5a.75.75 0 010 1.5h-5.5A2.5 2.5 0 012 14.5v-12z"/></svg>
+                ${repo.name}
+              </span>
+              <span class="repo-arrow">↗</span>
+            </div>
+            <p class="repo-desc">${repo.description || 'No description provided.'}</p>
+            <div class="repo-footer">
+              ${langHtml}
+              ${starsHtml}
+              ${forksHtml}
+            </div>
+          `;
+
+          container.appendChild(card);
         });
 
       } catch (error) {
-        console.error('Error loading GitHub projects:', error);
+        console.error('Error fetching repositories:', error);
         container.innerHTML = '<div class="loading-text">Failed to load projects.</div>';
       }
     }
 
-    // Initialize fetching when page loads
     fetchGitHubProjects();
   </script>
 </body>
