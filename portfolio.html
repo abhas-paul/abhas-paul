@@ -1,335 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Abhas Paul</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    color-scheme: dark;
-    --bg:    #080a0d;
-    --card:  #0d1014;
-    --ink:   #f3f5f7;
-    --ash:   #a7adb5;
-    --dim:   #68717c;
-    --line:  #252c35;
-    --accent: #8f6a36;
-    --accent-ink: #f0e4d0;
-    --glow: #1a2028;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abhas Paul — Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Abhas Paul, a full-stack developer based in India specializing in React, Next.js, TypeScript, and Node.js." />
+  
+  <style>
+    :root {
+      --bg: #0d1117;
+      --fg: #e6edf3;
+      --muted: #848d97;
+      --border: #30363d;
+      --accent: #4493f8;
+      --card: #161b22;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "SF Mono", "Fira Code", "JetBrains Mono", Menlo, Consolas, monospace;
+    }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
+    [data-theme="obsidian"] {
+      --bg: #0d1117;
+      --fg: #e6edf3;
+      --muted: #848d97;
+      --border: #30363d;
+      --accent: #8f6a36;
+      --card: #161b22;
+    }
 
-  body{
-    min-height: 100dvh;
-    background:
-      radial-gradient(85% 55% at 50% 0%, var(--glow) 0%, transparent 65%),
-      linear-gradient(145deg, #080a0d 0%, #050608 100%),
-      var(--bg);
-    color: var(--ink);
-    font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-  }
+    [data-theme="forest"] {
+      --bg: #0c1411;
+      --fg: #e0eee3;
+      --muted: #859e8d;
+      --border: #26352c;
+      --accent: #4c765b;
+      --card: #131c17;
+    }
 
-  .card{
-    width: min(560px, 100%);
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 30px 32px 26px;
-    text-align: center;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
-  }
+    [data-theme="night"] {
+      --bg: #0c121c;
+      --fg: #e1ebf7;
+      --muted: #8298b3;
+      --border: #26384f;
+      --accent: #365d86;
+      --card: #121926;
+    }
 
-  .eyebrow{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    color: var(--dim);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-  }
-  .eyebrow::before{
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #7fc58b;
-    box-shadow: 0 0 0 4px rgba(127, 197, 139, .1);
-  }
+    [data-theme="plum"] {
+      --bg: #120e15;
+      --fg: #f0e3f2;
+      --muted: #a38ea8;
+      --border: #392b3d;
+      --accent: #68466f;
+      --card: #19141d;
+    }
 
-  .theme-picker{
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin: 0 auto 25px;
-  }
-  .theme-picker button{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 8px;
-    border: 1px solid transparent;
-    border-radius: 7px;
-    background: transparent;
-    color: var(--dim);
-    cursor: pointer;
-    font: 600 10px "Manrope", sans-serif;
-    letter-spacing: .04em;
-    transition: background .18s ease, border-color .18s ease, color .18s ease;
-  }
-  .theme-picker button:hover,
-  .theme-picker button.active{
-    border-color: var(--line);
-    background: #11161c;
-    color: var(--ink);
-  }
-  .swatch{
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, .14);
-  }
-  .swatch.obsidian{ background: #8f6a36; }
-  .swatch.forest{ background: #4c765b; }
-  .swatch.night{ background: #365d86; }
-  .swatch.plum{ background: #68466f; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .dp{
-    width: 104px;
-    height: 104px;
-    margin: 0 auto 19px;
-    border-radius: 50%;
-    border: 1px solid #39424d;
-    background: #15191e;
-    object-fit: cover;
-    display: grid;
-    place-items: center;
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: .02em;
-    color: var(--ash);
-    box-shadow: 0 0 0 5px var(--card), 0 0 0 6px var(--line);
-  }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
 
-  h1{
-    font-family: "Space Grotesk", "Inter", sans-serif;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -.02em;
-  }
+    a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 4px;
+      transition: text-decoration-color 0.15s ease, color 0.15s ease;
+    }
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
 
-  .sub{
-    margin-top: 7px;
-    font-size: 14px;
-    color: var(--ash);
-  }
+    /* Top Bar & Theme Picker */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
 
-  .about{
-    margin-top: 25px;
-    padding-top: 22px;
-    border-top: 1px solid var(--line);
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--ash);
-    text-align: left;
-  }
-  .about p + p{ margin-top: 12px; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      padding: 0.15rem 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
 
-  .points{
-    margin-top: 14px;
-    text-align: left;
-    display: grid;
-    gap: 7px;
-  }
-  .points li{
-    list-style: none;
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: var(--ash);
-    display: grid;
-    grid-template-columns: 22px 1fr;
-    align-items: start;
-    gap: 2px;
-  }
-  .point-icon{
-    line-height: 1.55;
-  }
-  .emoji{
-    width: 1.05em;
-    height: 1.05em;
-    vertical-align: -.15em;
-    display: inline-block;
-  }
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #2da44e;
+    }
 
-  .label{
-    margin-top: 25px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    text-align: left;
-    font-size: 11.5px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
+    .theme-picker { display: flex; gap: 5px; }
 
-  .stack{
-    margin-top: 12px;
-    text-align: left;
-    display: grid;
-    gap: 8px;
-  }
-  .stack li{
-    list-style: none;
-    display: grid;
-    grid-template-columns: 74px 1fr;
-    gap: 10px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--ash);
-  }
-  .stack b{
-    font-weight: 500;
-    color: var(--dim);
-  }
+    .theme-picker button {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
 
-  .links{
-    margin-top: 26px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-  .links a{
-    display: block;
-    padding: 11px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background .18s ease, border-color .18s ease;
-  }
-  .primary{
-    background: var(--ink);
-    background: var(--accent);
-    color: var(--accent-ink);
-  }
-  .primary:hover{ filter: brightness(1.15); }
-  .ghost{
-    border: 1px solid var(--line);
-    color: var(--ink);
-  }
-  .ghost:hover{ border-color: #4b5662; background: #12171d; }
-  .links a:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+    .theme-picker button:hover,
+    .theme-picker button.active {
+      border-color: var(--accent);
+      color: var(--fg);
+    }
 
-  footer{
-    margin-top: 22px;
-    font-size: 11.5px;
-    color: var(--dim);
-  }
+    .swatch { width: 7px; height: 7px; border-radius: 50%; }
+    .swatch.obsidian { background: #8f6a36; }
+    .swatch.forest { background: #4c765b; }
+    .swatch.night { background: #365d86; }
+    .swatch.plum { background: #68466f; }
 
-  @media (max-width: 480px){
-    .card{ padding: 26px 20px 22px; }
-    .theme-picker{ flex-wrap: wrap; max-width: 250px; }
-    .links{ grid-template-columns: 1fr; }
-    .stack li{ grid-template-columns: 68px 1fr; }
-  }
+    /* Header Profile Layout */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
-</style>
+    .dp {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      background-color: var(--card);
+      flex-shrink: 0;
+    }
+
+    .header-info h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .header-info .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    section { margin-bottom: 2.5rem; }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    p { margin-bottom: 0.85rem; color: var(--fg); }
+
+    ul.points {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    ul.points li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      align-items: start;
+      font-size: 0.9rem;
+      color: var(--fg);
+    }
+
+    /* Tech Stack Grid - SVG Icons */
+    .stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stack-row {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .stack-label {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .skill-icons {
+      height: 36px; /* Scales the SVG perfectly */
+      display: block;
+    }
+
+    /* GitHub Graph */
+    .github-graph {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1rem;
+      overflow-x: auto; /* Allows horizontal scrolling on very small screens */
+      display: flex;
+      justify-content: center;
+      transition: border-color 0.15s ease;
+    }
+
+    .github-graph:hover {
+      border-color: var(--accent);
+    }
+
+    .github-graph img {
+      min-width: 550px; /* Keeps the graph from squishing too much */
+      width: 100%;
+      height: auto;
+      filter: hue-rotate(180deg) brightness(0.8) contrast(1.2); /* Adjusts the default green to blend with dark themes better */
+    }
+
+    /* GitHub Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Links & CTA */
+    .cta-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { opacity: 0.9; color: #fff; text-decoration: none; }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { background-color: var(--card); color: var(--fg); text-decoration: none; }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1.5rem 1rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .stack-row { grid-template-columns: 1fr; gap: 0.4rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body data-theme="obsidian">
-  <main class="card">
 
-    <p class="eyebrow">Available for meaningful projects ✦</p>
-    <div class="theme-picker" aria-label="Choose a dark theme">
+  <div class="top-bar">
+    <div class="status">
+      <span class="status-dot"></span> Available for projects
+    </div>
+    <div class="theme-picker" aria-label="Choose a theme">
       <button class="active" type="button" data-theme-choice="obsidian"><span class="swatch obsidian"></span>Obsidian</button>
       <button type="button" data-theme-choice="forest"><span class="swatch forest"></span>Forest</button>
       <button type="button" data-theme-choice="night"><span class="swatch night"></span>Night</button>
       <button type="button" data-theme-choice="plum"><span class="swatch plum"></span>Plum</button>
     </div>
+  </div>
+
+  <header>
+    <!-- Update pfp.jpg link if necessary -->
     <img class="dp" src="pfp.jpg" alt="Abhas Paul">
-
-    <h1>Abhas Paul</h1>
-    <p class="sub">Full-stack developer, 18 · India</p>
-
-    <div class="about">
-      <p>I'm Abhas Paul - a full-stack developer from India, passionate about building modern, scalable, and user-centric web applications.</p>
-      <p>I work across both frontend and backend development, with hands-on experience in Next.js, React, TypeScript, Node.js, Express, Hono, and MongoDB. I enjoy turning ideas into polished digital products with clean architecture, responsive design, and a strong focus on performance.</p>
-      <p>I also integrate AI tools into my development workflow to improve productivity, streamline problem-solving, and deliver high-quality results efficiently.</p>
-      <p>This portfolio showcases my projects, experiments, and ongoing work - all built with a strong emphasis on learning, originality, and real-world application.</p>
+    <div class="header-info">
+      <h1>Abhas Paul</h1>
+      <div class="sub">Full-stack developer, 18 · Kolkata, India</div>
     </div>
+  </header>
 
-    <p class="label about-label">🧠 About me</p>
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I build modern, scalable, and user-centric web applications across both frontend and backend. 
+        Focused on clean architecture, responsive UI, high performance, and incorporating AI tools to streamline workflows.
+      </p>
+      <ul class="points">
+        <li><span>🚀</span> <span>Building full-stack web applications from scratch.</span></li>
+        <li><span>🧠</span> <span>Focused on scalable backend systems and intuitive frontend experiences.</span></li>
+        <li><span>🤝</span> <span>Open to collaborating on innovative and meaningful projects.</span></li>
+      </ul>
+    </section>
 
-    <ul class="points">
-      <li><span class="point-icon" aria-hidden="true">🚀</span><span>Passionate about building impactful web applications from scratch.</span></li>
-      <li><span class="point-icon" aria-hidden="true">🧠</span><span>Interested in scalable backend systems and intuitive frontend experiences.</span></li>
-      <li><span class="point-icon" aria-hidden="true">📚</span><span>Constantly learning new technologies and improving my development workflow.</span></li>
-      <li><span class="point-icon" aria-hidden="true">🤝</span><span>Open to collaborating on meaningful and innovative projects.</span></li>
-    </ul>
+    <section id="stack">
+      <h2>Tech Stack</h2>
+      <div class="stack">
+        <div class="stack-row">
+          <span class="stack-label">Frontend</span>
+          <img class="skill-icons" src="https://skillicons.dev/icons?i=react,nextjs,ts,js,tailwind,css&theme=dark" alt="Frontend Frameworks" />
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">Backend</span>
+          <img class="skill-icons" src="https://skillicons.dev/icons?i=nodejs,express,bun&theme=dark" alt="Backend Technologies" />
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">Database</span>
+          <img class="skill-icons" src="https://skillicons.dev/icons?i=mongodb,postgres,supabase,mysql&theme=dark" alt="Databases" />
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">Tooling</span>
+          <img class="skill-icons" src="https://skillicons.dev/icons?i=git,github,vite,figma&theme=dark" alt="Developer Tools" />
+        </div>
+      </div>
+    </section>
 
-    <p class="label">🛠️ Tech stack</p>
-    <ul class="stack">
-      <li><b>Frontend</b> React, Next.js, TypeScript, JavaScript</li>
-      <li><b>Styling</b> Tailwind CSS, CSS</li>
-      <li><b>Backend</b> Node.js, Express, Hono, Bun</li>
-      <li><b>Database</b> MongoDB, PostgreSQL, Supabase, MySQL</li>
-      <li><b>Tools</b> Git, GitHub, PNPM, Vite, Figma, Framer</li>
-      <li><b>Focus</b> Full-stack development, APIs, authentication, responsive design, AI-assisted workflows</li>
-    </ul>
+    <!-- NEW GITHUB GRAPH SECTION -->
+    <section id="github-activity">
+      <h2>Contributions</h2>
+      <a href="https://github.com/abhas-paul" target="_blank" rel="noopener" style="text-decoration: none;">
+        <div class="github-graph">
+          <!-- Uses an open source API to fetch your live contribution graph -->
+          <img src="https://ghchart.rshah.org/abhas-paul" alt="Abhas Paul's GitHub Activity Graph" />
+        </div>
+      </a>
+    </section>
 
-    <div class="links">
-      <a class="primary" href="https://github.com/abhas-paul" target="_blank" rel="noopener">View GitHub ↗</a>
-      <a class="ghost" href="mailto:abhaspaul.dev@gmail.com">Email me ✉</a>
-    </div>
+    <section id="projects">
+      <h2>Featured Work</h2>
+      <div class="projects-grid">
+        <!-- REPLACE "your-repo-1" WITH YOUR ACTUAL REPOSITORY NAME -->
+        <a href="https://github.com/abhas-paul/your-repo-1" target="_blank" rel="noopener" class="project-card">
+          <img src="https://github-readme-stats.vercel.app/api/pin/?username=abhas-paul&repo=your-repo-1&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97" alt="Repository 1">
+        </a>
+        
+        <!-- REPLACE "your-repo-2" WITH YOUR ACTUAL REPOSITORY NAME -->
+        <a href="https://github.com/abhas-paul/your-repo-2" target="_blank" rel="noopener" class="project-card">
+          <img src="https://github-readme-stats.vercel.app/api/pin/?username=abhas-paul&repo=your-repo-2&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97" alt="Repository 2">
+        </a>
+      </div>
+    </section>
 
-    <footer>Kolkata, India</footer>
+    <section id="connect">
+      <h2>Connect</h2>
+      <p>Feel free to reach out for collaborations, project inquiries, or tech conversations.</p>
+      <div class="cta-links">
+        <a class="btn btn-primary" href="https://github.com/abhas-paul" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-secondary" href="mailto:abhaspaul.dev@gmail.com">Email ✉</a>
+      </div>
+    </section>
   </main>
-  <script>
-    const themes = {
-      obsidian: { accent: "#8f6a36", accentInk: "#f0e4d0", glow: "#1a2028", card: "#0d1014", line: "#252c35" },
-      forest: { accent: "#4c765b", accentInk: "#e0eee3", glow: "#15251d", card: "#0c1411", line: "#26352c" },
-      night: { accent: "#365d86", accentInk: "#e1ebf7", glow: "#152237", card: "#0c121c", line: "#26384f" },
-      plum: { accent: "#68466f", accentInk: "#f0e3f2", glow: "#211728", card: "#120e15", line: "#392b3d" }
-    };
-    const root = document.documentElement;
-    const buttons = document.querySelectorAll("[data-theme-choice]");
 
-    function applyTheme(name) {
-      const theme = themes[name] || themes.obsidian;
-      root.style.setProperty("--accent", theme.accent);
-      root.style.setProperty("--accent-ink", theme.accentInk);
-      root.style.setProperty("--glow", theme.glow);
-      root.style.setProperty("--card", theme.card);
-      root.style.setProperty("--line", theme.line);
+  <footer>
+    <span>&copy; 2026 Abhas Paul</span>
+    <span>Kolkata, India</span>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-theme-choice]");
+    
+    function setTheme(name) {
       document.body.dataset.theme = name;
-      buttons.forEach((button) => button.classList.toggle("active", button.dataset.themeChoice === name));
+      buttons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.themeChoice === name);
+      });
       localStorage.setItem("portfolio-theme", name);
     }
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => applyTheme(button.dataset.themeChoice));
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => setTheme(btn.dataset.themeChoice));
     });
-    applyTheme(localStorage.getItem("portfolio-theme") || "obsidian");
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
-  <script>
-    twemoji.parse(document.body, {
-      folder: "svg",
-      ext: ".svg",
-      className: "emoji"
-    });
+
+    const savedTheme = localStorage.getItem("portfolio-theme") || "obsidian";
+    setTheme(savedTheme);
   </script>
 </body>
 </html>
