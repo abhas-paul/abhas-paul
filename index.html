@@ -217,7 +217,7 @@
     }
 
     .skill-icons {
-      height: 36px; /* Scales the SVG perfectly */
+      height: 36px;
       display: block;
     }
 
@@ -227,7 +227,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem 1rem;
-      overflow-x: auto; /* Allows horizontal scrolling on very small screens */
+      overflow-x: auto;
       display: flex;
       justify-content: center;
       transition: border-color 0.15s ease;
@@ -238,10 +238,10 @@
     }
 
     .github-graph img {
-      min-width: 550px; /* Keeps the graph from squishing too much */
+      min-width: 550px;
       width: 100%;
       height: auto;
-      filter: hue-rotate(180deg) brightness(0.8) contrast(1.2); /* Adjusts the default green to blend with dark themes better */
+      filter: hue-rotate(180deg) brightness(0.8) contrast(1.2);
     }
 
     /* GitHub Projects Grid */
@@ -259,6 +259,7 @@
       overflow: hidden;
       display: block;
       text-decoration: none;
+      min-height: 120px;
     }
 
     .project-card:hover {
@@ -268,7 +269,16 @@
 
     .project-card img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+    }
+    
+    .loading-text {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      grid-column: 1 / -1;
     }
 
     /* Links & CTA */
@@ -380,12 +390,10 @@
       </div>
     </section>
 
-    <!-- NEW GITHUB GRAPH SECTION -->
     <section id="github-activity">
       <h2>Contributions</h2>
       <a href="https://github.com/abhas-paul" target="_blank" rel="noopener" style="text-decoration: none;">
         <div class="github-graph">
-          <!-- Uses an open source API to fetch your live contribution graph -->
           <img src="https://ghchart.rshah.org/abhas-paul" alt="Abhas Paul's GitHub Activity Graph" />
         </div>
       </a>
@@ -393,16 +401,9 @@
 
     <section id="projects">
       <h2>Featured Work</h2>
-      <div class="projects-grid">
-        <!-- REPLACE "your-repo-1" WITH YOUR ACTUAL REPOSITORY NAME -->
-        <a href="https://github.com/abhas-paul/your-repo-1" target="_blank" rel="noopener" class="project-card">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=abhas-paul&repo=your-repo-1&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97" alt="Repository 1">
-        </a>
-        
-        <!-- REPLACE "your-repo-2" WITH YOUR ACTUAL REPOSITORY NAME -->
-        <a href="https://github.com/abhas-paul/your-repo-2" target="_blank" rel="noopener" class="project-card">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=abhas-paul&repo=your-repo-2&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97" alt="Repository 2">
-        </a>
+      <div class="projects-grid" id="repo-container">
+        <!-- Repositories will be injected here by JavaScript -->
+        <div class="loading-text">Fetching latest projects from GitHub...</div>
       </div>
     </section>
 
@@ -422,6 +423,7 @@
   </footer>
 
   <script>
+    // Theme Switcher Logic
     const buttons = document.querySelectorAll("[data-theme-choice]");
     
     function setTheme(name) {
@@ -438,6 +440,60 @@
 
     const savedTheme = localStorage.getItem("portfolio-theme") || "obsidian";
     setTheme(savedTheme);
+
+    // GitHub Projects Fetcher Logic
+    async function fetchGitHubProjects() {
+      const username = 'abhas-paul';
+      const container = document.getElementById('repo-container');
+      
+      try {
+        // Fetch up to 10 recently updated public repos
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch repositories');
+        }
+        
+        const repos = await response.json();
+        
+        // Filter out forks and the profile README repo, then grab the top 4
+        const featuredRepos = repos
+          .filter(repo => !repo.fork && repo.name.toLowerCase() !== username.toLowerCase())
+          .slice(0, 4);
+
+        container.innerHTML = ''; // Clear loading text
+
+        if (featuredRepos.length === 0) {
+          container.innerHTML = '<div class="loading-text">No public repositories found.</div>';
+          return;
+        }
+
+        // Generate HTML for each repo card
+        featuredRepos.forEach(repo => {
+          const a = document.createElement('a');
+          a.href = repo.html_url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.className = 'project-card';
+          
+          const img = document.createElement('img');
+          // Dynamically build the vercel app URL for the pinned stat cards
+          img.src = `https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo.name}&theme=transparent&hide_border=true&title_color=ffffff&text_color=a0a0a0&icon_color=848d97`;
+          img.alt = repo.name;
+          img.loading = "lazy";
+          
+          a.appendChild(img);
+          container.appendChild(a);
+        });
+
+      } catch (error) {
+        console.error('Error loading GitHub projects:', error);
+        container.innerHTML = '<div class="loading-text">Failed to load projects.</div>';
+      }
+    }
+
+    // Initialize fetching when page loads
+    fetchGitHubProjects();
   </script>
 </body>
 </html>
